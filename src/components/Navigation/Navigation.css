@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../../vendor/RobotoSlab-VariableFont_wght.ttf") format("opentype");
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 42px;
+}
+
+.nav__list {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__item {
+  display: flex;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav__link--active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.nav__link--home {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.nav__link--home:hover,
+.nav__link--home.nav__link--active,
+.nav__link--home:focus-visible {
+  background: transparent;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+}

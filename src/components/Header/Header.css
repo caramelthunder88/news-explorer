@@ -1,6 +1,21 @@
 @font-face {
-  font-family: "Roboto Slab Var";
+  font-family: "Roboto-slab";
   src: url("../../vendor/RobotoSlab-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-500";
+  src: url("../../vendor/roboto-500.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-400";
+  src: url("../../vendor/roboto-400-regular.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-700";
+  src: url("../../vendor/roboto-700.woff") format("truetype");
 }
 
 .header {
@@ -22,9 +37,9 @@
   margin: 0 auto;
 }
 
-/* top bar, 104px gutters */
 .header__bar {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: flex-start;
   height: 80px;
@@ -32,6 +47,7 @@
   padding: 0 104px;
   margin: 0;
   max-width: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .header__logo {
@@ -39,24 +55,42 @@
   height: 24px;
   color: #fff;
   text-decoration: none;
+  font-family: "Roboto-700", sans-serif;
   font-weight: 700;
   font-size: 20px;
 }
 
 .header__auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 176px;
+  height: 48px;
+  padding: 0;
+  border-radius: 100px;
+
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: transparent;
   color: #fff;
-  padding: 8px 14px;
-  border-radius: 1000px;
+
+  font-family: "Roboto-500", sans-serif;
   font-weight: 500;
   font-size: 18px;
+  line-height: 1;
+
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 .header__auth-btn:hover {
   border-color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.header__auth-btn:focus-visible {
+  outline: 2px solid #2f71e5;
+  outline-offset: 2px;
+  border-radius: 100px;
 }
 
 .header__container {
@@ -68,7 +102,7 @@
   max-width: 608px;
   margin: 0 auto 32px;
   text-align: left;
-  font-family: "Roboto Slab Var", serif;
+  font-family: "Roboto-slab", sans-serif;
   font-size: 60px;
   font-weight: 400;
   line-height: 1.15;
@@ -80,6 +114,7 @@
   margin: 0 auto;
   text-align: left;
   color: white;
+  font-family: "Roboto-400", sans-serif;
   font-size: 18px;
   font-weight: 400;
 }
@@ -117,7 +152,6 @@
   background: #1a4fb3;
 }
 
-/* focus rings */
 .header__logo:focus-visible,
 .header__auth-btn:focus-visible,
 .search-form__input:focus-visible,

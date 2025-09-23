@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Roboto";
-  src: url("../../vendor/RobotoSlab-VariableFont_wght.ttf") format("opentype");
+  font-family: "Roboto-500";
+  src: url("../../vendor/roboto-500.woff") format("opentype");
 }
 
 .nav {
@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: center;
   padding: 8px 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto-500", sans-serif;
   font-size: 18px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
@@ -63,4 +63,25 @@
   border: none;
   color: #fff;
   text-decoration: none;
+}
+
+.nav__link--home {
+  position: relative;
+}
+
+.nav__link--home.nav__link--active::after {
+  content: "";
+  position: absolute;
+  width: 68px;
+  height: 3px;
+
+  bottom: -20px;
+  height: 3px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.nav__link--home.nav__link--active {
+  background: transparent;
+  border-color: transparent;
 }

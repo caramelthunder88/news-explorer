@@ -12,7 +12,7 @@ export default function Header({
     <header className="header">
       <div className="header__bar">
         <Link to="/" className="header__logo">
-          News Explorer
+          NewsExplorer
         </Link>
         <Navigation isLoggedIn={isLoggedIn} />
         <button
@@ -33,7 +33,6 @@ export default function Header({
         </p>
       </div>
 
-      {/* ⬇️ Search lives here, below hero, inside header */}
       <div className="header__search">
         <SearchForm onSearch={(q) => console.log("search:", q)} />
       </div>

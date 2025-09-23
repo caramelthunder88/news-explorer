@@ -1,42 +1,82 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 1024px) {
+  html,
+  body {
+    overflow: hidden;
   }
-  to {
-    transform: rotate(360deg);
+
+  .page {
+    position: fixed;
+    inset: 0;
+    height: 100dvh;
+    display: grid;
+    grid-template-rows: minmax(0, 45fr) minmax(0, 49fr) minmax(0, 6fr);
+    overflow: hidden;
+    contain: layout paint size;
+  }
+
+  .header,
+  .page__content,
+  .footer {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .main--home {
+    display: none;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 1024px) and (min-height: 1280px) {
+  .page {
+    grid-template-rows: 576px 624px 80px;
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 1023px) {
+  html,
+  body {
+    overflow: auto;
+  }
+  .page {
+    position: static;
+    display: block;
+    height: auto;
+  }
+  .page__content {
+    overflow: visible;
+  }
+  .main--home {
+    display: block;
+  }
 }
 
+.logo,
+.card,
 .read-the-docs {
-  color: #888;
+  all: unset;
 }

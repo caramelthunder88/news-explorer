@@ -28,7 +28,7 @@
   width: 100%;
   max-width: 1232px;
   margin: 0;
-  padding: 80px 104px 80px;
+  padding: 80px 104px 0;
   display: grid;
   grid-template-columns: 464px 600px;
   align-items: start;
@@ -63,6 +63,10 @@
 
 .about__content {
   margin-top: 51px;
+}
+
+.about__content > *:last-child {
+  margin-bottom: 0;
 }
 
 .about__title {

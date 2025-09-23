@@ -20,7 +20,8 @@
 
 .header {
   position: relative;
-  height: 576px;
+  height: auto;
+  min-height: 576px;
   color: #fff;
   background: url("../../assets/georgia-de-lotz--UsJoNxLaNo-unsplash@2x.png")
     center/cover no-repeat;

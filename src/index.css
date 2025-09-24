@@ -1,4 +1,3 @@
-/* ---- Base reset ---- */
 *,
 *::before,
 *::after {
@@ -12,22 +11,19 @@ body,
 }
 body {
   margin: 0;
-  /* normal flow — no flex centering */
   display: block;
-  background: #f4f4f5; /* page bg (outside the hero) */
+  background: #f4f4f5;
   color: #111;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif;
   line-height: 1.5;
 }
 
-/* Optional: keep links neutral unless styled in components */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* App shell: header at top, footer at bottom, content grows */
 #root {
   display: flex;
   flex-direction: column;
@@ -36,8 +32,18 @@ main {
   flex: 1 0 auto;
 }
 
-/* Prevent tiny horizontal scroll when we full-bleed the header */
 html,
 body {
   overflow-x: hidden;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

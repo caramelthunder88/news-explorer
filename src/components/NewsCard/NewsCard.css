@@ -1,0 +1,124 @@
+@font-face {
+  font-family: "Roboto-400";
+  src: url("../../vendor/roboto-400-regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Roboto-500";
+  src: url("../../vendor/roboto-500.woff") format("woff");
+}
+@font-face {
+  font-family: "Roboto-slab";
+  src: url("../../vendor/RobotoSlab-VariableFont_wght.ttf") format("truetype");
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 16px rgba(16, 24, 40, 0.08);
+}
+.card__link {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.card__media {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #f1f5f9;
+}
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card__chip {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  background: #fff;
+  color: #1a1b22;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font: 500 12px/1 "Roboto-500", system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+}
+
+.card__btn {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.card__btn:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+.card__btn::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  background: no-repeat center/20px 20px;
+}
+.card__btn--save::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%231a1b22' stroke-width='1.5'%3E%3Cpath d='M5.5 3h9a1.5 1.5 0 011.5 1.5V17l-6-3-6 3V4.5A1.5 1.5 0 015.5 3z'/%3E%3C/svg%3E");
+}
+.card__btn--save.is-active::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg' fill='%232f71e5'%3E%3Cpath d='M5.5 3h9a1.5 1.5 0 011.5 1.5V17l-6-3-6 3V4.5A1.5 1.5 0 015.5 3z'/%3E%3C/svg%3E");
+}
+.card__btn--delete::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='%231a1b22' stroke-width='1.5'%3E%3Cpath d='M7 3h6M4 6h12M6 6v11a2 2 0 002 2h4a2 2 0 002-2V6'/%3E%3C/svg%3E");
+}
+
+.card__body {
+  padding: 16px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 8px;
+}
+.card__date {
+  color: #b6bcbf;
+  font: 400 14px/1.4 "Roboto-400", system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+}
+.card__title {
+  margin: 0;
+  color: #1a1b22;
+  font-family: "Roboto-slab", serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.card__text {
+  margin: 0;
+  color: #4b5563;
+  font: 400 16px/1.5 "Roboto-400", system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card__source {
+  margin-top: 6px;
+  color: #1a1b22;
+  font: 500 14px/1 "Roboto-500", system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+}

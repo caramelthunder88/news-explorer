@@ -1,15 +1,23 @@
-import Header from "../components/Header/Header.jsx";
-import SearchForm from "../components/SearchForm/SearchForm.jsx";
-import Footer from "../components/Footer/Footer.jsx";
+import About from "../components/About/About.jsx";
+import Main from "../components/Main/Main.jsx";
 
-export default function Home() {
+export default function Home({
+  status,
+  articles,
+  visible,
+  onShowMore,
+  errorMsg,
+}) {
   return (
     <>
-      <Header />
-      <main className="container" style={{ padding: "0 0 48px" }}>
-        <SearchForm onSearch={(q) => console.log("search:", q)} />
-      </main>
-      <Footer />
+      <Main
+        status={status}
+        articles={articles}
+        visible={visible}
+        onShowMore={onShowMore}
+        errorMsg={errorMsg}
+      />
+      <About />
     </>
   );
 }

@@ -2,6 +2,7 @@ import Preloader from "../Preloader/Preloader.jsx";
 import NewsCardList from "../NewsCardList/NewsCardList.jsx";
 
 export default function Main({
+  isLoggedIn,
   status,
   articles,
   visible,
@@ -9,7 +10,7 @@ export default function Main({
   errorMsg,
 }) {
   return (
-    <main className="main">
+    <section className="main">
       <section className="container">
         {status === "idle" && null}
         {status === "loading" && <Preloader />}
@@ -20,9 +21,12 @@ export default function Main({
             articles={articles}
             visible={visible}
             onShowMore={onShowMore}
+            status="success"
+            title={`Search results`}
+            isLoggedIn={isLoggedIn}
           />
         )}
       </section>
-    </main>
+    </section>
   );
 }

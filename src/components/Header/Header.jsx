@@ -7,6 +7,8 @@ export default function Header({
   isLoggedIn = false,
   userName = "Guest",
   onSignIn,
+  onSearch,
+  loading = false,
 }) {
   return (
     <header className="header">
@@ -34,7 +36,7 @@ export default function Header({
       </div>
 
       <div className="header__search">
-        <SearchForm onSearch={(q) => console.log("search:", q)} />
+        <SearchForm onSearch={onSearch} loading={loading} />
       </div>
     </header>
   );

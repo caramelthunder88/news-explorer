@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./SearchForm.css";
 
-export default function SearchForm({ onSearch }) {
+export default function SearchForm({ onSearch, loading = false }) {
   const [query, setQuery] = useState("");
   const [touched, setTouched] = useState(false);
 
@@ -34,7 +34,7 @@ export default function SearchForm({ onSearch }) {
         onBlur={() => setTouched(true)}
         required
       />
-      <button className="search-form__button" type="submit">
+      <button className="search-form__button" type="submit" disabled={loading}>
         Search
       </button>
       {showError && (

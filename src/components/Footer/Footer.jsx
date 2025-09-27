@@ -49,7 +49,7 @@ export default function Footer({ isLoggedIn = false }) {
 
               <a
                 className="footer__icon"
-                href="https://www.linkedin.com/in/yourhandle"
+                href="https://www.linkedin.com/in/donte-morgan-507b47230/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn (opens in a new tab)"

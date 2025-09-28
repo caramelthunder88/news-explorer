@@ -1,28 +1,27 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 
-export default function RegisterModal({
+export default function LoginModal({
   isOpen,
   onClose,
-  onRegister,
-  onOpenLogin,
+  onLogin,
+  onOpenRegister,
   loading,
   error,
 }) {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    onRegister?.({ name: name.trim(), email: email.trim(), password });
+    onLogin?.({ email: email.trim(), password });
   }
 
   return (
     <ModalWithForm
       isOpen={isOpen}
-      title="Sign up"
-      submitLabel="Sign up"
+      title="Sign in"
+      submitLabel="Sign in"
       onClose={onClose}
       onSubmit={handleSubmit}
       disabled={loading}
@@ -45,30 +44,17 @@ export default function RegisterModal({
         <input
           className="modal__input"
           type="password"
-          autoComplete="new-password"
+          autoComplete="current-password"
           minLength={6}
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-
-      <label className="modal__field">
-        <span>Name</span>
-        <input
-          className="modal__input"
-          type="text"
-          autoComplete="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-
       <p className="modal__switch">
         or{" "}
-        <button type="button" className="modal__link" onClick={onOpenLogin}>
-          Sign in
+        <button type="button" className="modal__link" onClick={onOpenRegister}>
+          Sign up
         </button>
       </p>
     </ModalWithForm>

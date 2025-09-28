@@ -5,6 +5,7 @@ import {
   checkToken,
   getStoredToken,
   signout,
+  register,
 } from "../../utils/authStub.js";
 
 import Header from "../Header/Header.jsx";
@@ -13,12 +14,18 @@ import About from "../About/About.jsx";
 import SavedNews from "../../pages/SavedNews.jsx";
 import Footer from "../Footer/Footer.jsx";
 import { getNews } from "../../utils/newsApi";
+import LoginModal from "../LoginModal/LoginModal.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 
 const PAGE = 3;
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Guest");
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
+  const [authError, setAuthError] = useState("");
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
@@ -27,6 +34,17 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(0);
+
+  const openLogin = useCallback(() => {
+    setRegisterOpen(false);
+    setAuthError("");
+    setLoginOpen(true);
+  }, []);
+  const openRegister = useCallback(() => {
+    setLoginOpen(false);
+    setAuthError("");
+    setRegisterOpen(true);
+  }, []);
 
   const handleSearch = useCallback(async (q) => {
     const term = q.trim();
@@ -105,13 +123,43 @@ export default function App() {
       await signout();
       setIsLoggedIn(false);
       setUserName("Guest");
-      return;
+    } else {
+      setAuthError("");
+      setLoginOpen(true);
     }
-    const { token } = await authorize("demo@example.com", "password123");
-    const { data } = await checkToken(token);
-    setIsLoggedIn(true);
-    setUserName(data?.name || "Demo User");
   }, [isLoggedIn]);
+
+  const handleLogin = useCallback(async ({ email, password }) => {
+    try {
+      setAuthLoading(true);
+      setAuthError("");
+      const { token } = await authorize(email, password);
+      const { data } = await checkToken(token);
+      setIsLoggedIn(true);
+      setUserName(data?.name || "Demo User");
+      setLoginOpen(false);
+    } catch (e) {
+      setAuthError("Invalid email or password");
+    } finally {
+      setAuthLoading(false);
+    }
+  }, []);
+
+  const handleRegister = useCallback(async ({ name, email, password }) => {
+    try {
+      setAuthLoading(true);
+      setAuthError("");
+      const { token } = await register({ name, email, password });
+      const { data } = await checkToken(token);
+      setIsLoggedIn(true);
+      setUserName(data?.name || name || "New User");
+      setRegisterOpen(false);
+    } catch (e) {
+      setAuthError("Sign up failed. Please try again.");
+    } finally {
+      setAuthLoading(false);
+    }
+  }, []);
 
   return (
     <div className={isHome ? "page" : undefined}>
@@ -150,6 +198,24 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+
+      <LoginModal
+        isOpen={loginOpen}
+        onClose={() => setLoginOpen(false)}
+        onLogin={handleLogin}
+        onOpenRegister={openRegister}
+        loading={authLoading}
+        error={authError}
+      />
+
+      <RegisterModal
+        isOpen={registerOpen}
+        onClose={() => setRegisterOpen(false)}
+        onRegister={handleRegister}
+        onOpenLogin={openLogin}
+        loading={authLoading}
+        error={authError}
+      />
 
       <Footer isLoggedIn={isLoggedIn} />
     </div>

@@ -13,6 +13,10 @@ export default function RegisterModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const emailOk = /\S+@\S+\.\S+/.test(email.trim());
+  const canSubmit =
+    name.trim().length > 0 && emailOk && password.trim().length >= 6;
+
   function handleSubmit(e) {
     e.preventDefault();
     onRegister?.({ name: name.trim(), email: email.trim(), password });
@@ -25,8 +29,10 @@ export default function RegisterModal({
       submitLabel="Sign up"
       onClose={onClose}
       onSubmit={handleSubmit}
-      disabled={loading}
+      disabled={!canSubmit || loading}
+      busy={loading}
       error={error}
+      variant="signup"
     >
       <label className="modal__field">
         <span>Email</span>
@@ -35,6 +41,7 @@ export default function RegisterModal({
           type="email"
           autoComplete="email"
           required
+          placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -48,18 +55,20 @@ export default function RegisterModal({
           autoComplete="new-password"
           minLength={6}
           required
+          placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
 
       <label className="modal__field">
-        <span>Name</span>
+        <span>Username</span>
         <input
           className="modal__input"
           type="text"
           autoComplete="name"
           required
+          placeholder="Enter your username"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />

@@ -38,7 +38,7 @@ export default function Footer({ isLoggedIn = false }) {
             <li className="footer__icons">
               <a
                 className="footer__icon"
-                href="https://github.com/yourhandle"
+                href="https://github.com/caramelthunder88"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub (opens in a new tab)"

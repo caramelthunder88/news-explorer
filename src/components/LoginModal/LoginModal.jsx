@@ -12,8 +12,11 @@ export default function LoginModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const canSubmit = email.trim().length > 0 && password.trim().length >= 6;
+
   function handleSubmit(e) {
     e.preventDefault();
+    if (!canSubmit || loading) return;
     onLogin?.({ email: email.trim(), password });
   }
 
@@ -24,8 +27,10 @@ export default function LoginModal({
       submitLabel="Sign in"
       onClose={onClose}
       onSubmit={handleSubmit}
-      disabled={loading}
+      disabled={!canSubmit || loading}
+      busy={loading}
       error={error}
+      variant="signin"
     >
       <label className="modal__field">
         <span>Email</span>
@@ -34,12 +39,13 @@ export default function LoginModal({
           type="email"
           autoComplete="email"
           required
+          placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
 
-      <label className="modal__field">
+      <label className="modal__field modal__field--password">
         <span>Password</span>
         <input
           className="modal__input"
@@ -47,6 +53,7 @@ export default function LoginModal({
           autoComplete="current-password"
           minLength={6}
           required
+          placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

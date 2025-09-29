@@ -5,17 +5,17 @@
 
 @font-face {
   font-family: "Roboto-500";
-  src: url("../../vendor/roboto-500.woff") format("truetype");
+  src: url("../../vendor/roboto-500.woff") format("woff");
 }
 
 @font-face {
   font-family: "Roboto-400";
-  src: url("../../vendor/roboto-400-regular.woff") format("truetype");
+  src: url("../../vendor/roboto-400-regular.woff") format("woff");
 }
 
 @font-face {
   font-family: "Roboto-700";
-  src: url("../../vendor/roboto-700.woff") format("truetype");
+  src: url("../../vendor/roboto-700.woff") format("woff");
 }
 
 .header {

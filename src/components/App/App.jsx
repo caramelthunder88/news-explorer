@@ -16,6 +16,7 @@ import Footer from "../Footer/Footer.jsx";
 import { getNews } from "../../utils/newsApi";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import SuccessModal from "../SuccessModal/SuccessModal.jsx";
 
 const PAGE = 3;
 
@@ -28,6 +29,7 @@ export default function App() {
   const [authError, setAuthError] = useState("");
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+  const [successOpen, setSuccessOpen] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [articles, setArticles] = useState([]);
@@ -149,11 +151,15 @@ export default function App() {
     try {
       setAuthLoading(true);
       setAuthError("");
-      const { token } = await register({ name, email, password });
-      const { data } = await checkToken(token);
-      setIsLoggedIn(true);
-      setUserName(data?.name || name || "New User");
+
+      await register({ name, email, password });
+
+      await signout();
+      setIsLoggedIn(false);
+      setUserName("Guest");
+
       setRegisterOpen(false);
+      setSuccessOpen(true);
     } catch (e) {
       setAuthError("Sign up failed. Please try again.");
     } finally {
@@ -217,6 +223,15 @@ export default function App() {
         error={authError}
       />
 
+      <SuccessModal
+        isOpen={successOpen}
+        onClose={() => setSuccessOpen(false)}
+        onSignIn={() => {
+          setSuccessOpen(false);
+          openLogin();
+        }}
+        variant="success"
+      />
       <Footer isLoggedIn={isLoggedIn} />
     </div>
   );

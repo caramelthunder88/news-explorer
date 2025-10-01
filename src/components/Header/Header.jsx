@@ -9,9 +9,10 @@ export default function Header({
   onSignIn,
   onSearch,
   loading = false,
+  saved = false,
 }) {
   return (
-    <header className="header">
+    <header className={`header ${saved ? "header--saved" : ""}`}>
       <div className="header__bar">
         <Link to="/" className="header__logo">
           NewsExplorer
@@ -27,17 +28,21 @@ export default function Header({
         </button>
       </div>
 
-      <div className="header__container">
-        <h1 className="header__title">What’s going on in the world?</h1>
-        <p className="header__subtitle">
-          Find the latest news on any topic and save them in your personal
-          account.
-        </p>
-      </div>
+      {!saved && (
+        <>
+          <div className="header__container">
+            <h1 className="header__title">What’s going on in the world?</h1>
+            <p className="header__subtitle">
+              Find the latest news on any topic and save them in your personal
+              account.
+            </p>
+          </div>
 
-      <div className="header__search">
-        <SearchForm onSearch={onSearch} loading={loading} />
-      </div>
+          <div className="header__search">
+            <SearchForm onSearch={onSearch} loading={loading} />
+          </div>
+        </>
+      )}
     </header>
   );
 }

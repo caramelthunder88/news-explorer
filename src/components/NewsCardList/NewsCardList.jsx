@@ -12,6 +12,7 @@ export default function NewsCardList({
   isLoggedIn = false,
   context = "home",
   onRemove,
+  searchTerm,
 }) {
   const toShow =
     typeof visible === "number" && visible > 0
@@ -59,15 +60,21 @@ export default function NewsCardList({
       )}
 
       <div className="news-list__grid">
-        {toShow.map((article, i) => (
-          <NewsCard
-            key={article.url ?? i}
-            card={article}
-            isLoggedIn={isLoggedIn}
-            context={context}
-            onRemove={onRemove}
-          />
-        ))}
+        {toShow.map((article, i) => {
+          const card =
+            context === "home" && searchTerm
+              ? { ...article, keyword: searchTerm.trim() }
+              : article;
+          return (
+            <NewsCard
+              key={card.url ?? i}
+              card={card}
+              isLoggedIn={isLoggedIn}
+              context={context}
+              onRemove={onRemove}
+            />
+          );
+        })}
       </div>
 
       {typeof visible === "number" && visible < articles.length && (

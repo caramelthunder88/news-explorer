@@ -2,23 +2,25 @@
   font-family: "Roboto-slab";
   src: url("../../vendor/RobotoSlab-VariableFont_wght.ttf") format("truetype");
 }
-
 @font-face {
   font-family: "Roboto-500";
   src: url("../../vendor/roboto-500.woff") format("woff");
 }
-
 @font-face {
   font-family: "Roboto-400";
   src: url("../../vendor/roboto-400-regular.woff") format("woff");
 }
-
 @font-face {
   font-family: "Roboto-700";
   src: url("../../vendor/roboto-700.woff") format("woff");
 }
 
 .header {
+  --nav-fg: #fff;
+  --nav-hover-bg: rgba(255, 255, 255, 0.08);
+  --nav-border: rgba(255, 255, 255, 0.2);
+  --nav-underline-w: 68px;
+
   position: relative;
   height: auto;
   min-height: 576px;
@@ -30,17 +32,18 @@
   margin-bottom: 0;
 }
 
-.container {
+.header .container {
   position: relative;
   z-index: 1;
   max-width: 1200px;
   padding: 0 24px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .header__bar {
-  display: flex;
   position: relative;
+  display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 80px;
@@ -48,13 +51,14 @@
   padding: 0 104px;
   margin: 0;
   max-width: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid #ffffff;
+  color: var(--nav-fg);
 }
 
 .header__logo {
   width: 200px;
   height: 24px;
-  color: #fff;
+  color: currentColor;
   text-decoration: none;
   font-family: "Roboto-700", sans-serif;
   font-weight: 700;
@@ -65,13 +69,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 176px;
   height: 48px;
   padding: 0;
   border-radius: 100px;
 
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid #ffffff99;
   background: transparent;
   color: #fff;
 
@@ -81,13 +84,14 @@
   line-height: 1;
 
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 .header__auth-btn:hover {
   border-color: #fff;
-  background: rgba(255, 255, 255, 0.8);
+  background: #ffffffcc;
 }
-
 .header__auth-btn:focus-visible {
   outline: 2px solid #2f71e5;
   outline-offset: 2px;
@@ -130,7 +134,6 @@
   width: 100%;
   margin: 0;
 }
-
 .header__search .search-form__input {
   height: 64px;
   background: #fff;
@@ -162,8 +165,48 @@
   border-radius: 10px;
 }
 
+.header--saved {
+  --nav-fg: #1a1b22;
+  --nav-hover-bg: #1a1b220f;
+  --nav-border: #1a1b222e;
+  --nav-underline-w: 178px;
+
+  min-height: 80px;
+  height: auto;
+  background: #fff;
+  color: #1a1b22;
+  background-image: none;
+}
+
+.header--saved .header__bar {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 0 104px;
+  border-bottom: 1px solid #1a1b221f;
+}
+
+.header--saved .header__logo {
+  color: currentColor;
+}
+
+.header--saved .header__auth-btn {
+  color: #1a1b22;
+  border-color: #1a1b2266;
+  background: transparent;
+}
+.header--saved .header__auth-btn:hover {
+  border-color: #1a1b22cc;
+  background: #1a1b220f;
+}
+
+.header--saved + .page__content {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 @media (min-width: 1440px) {
-  .header {
+  .header:not(.header--saved) {
     min-height: 576px;
     background-size: cover;
     background-position: center;

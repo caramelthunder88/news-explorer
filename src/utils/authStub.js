@@ -21,8 +21,8 @@ export async function authorize(email, password) {
   const token = "fake-" + btoa(`${email}:${password}`);
   localStorage.setItem(TOKEN_KEY, token);
 
-  const existing = getStoredUser() ?? { name: "Demo User", email };
-  localStorage.setItem(USER_KEY, JSON.stringify(existing));
+  const name = email?.split("@")[0] || "User";
+  localStorage.setItem(USER_KEY, JSON.stringify({ name, email }));
 
   return { token };
 }
@@ -56,6 +56,7 @@ export async function checkToken(token) {
 
 export async function signout() {
   await sleep(150);
+
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USER_KEY);
   return { ok: true };

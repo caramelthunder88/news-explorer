@@ -29,6 +29,7 @@ export default function App() {
   const [authError, setAuthError] = useState("");
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+  const isSaved = pathname === "/saved-news";
   const [successOpen, setSuccessOpen] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -98,12 +99,12 @@ export default function App() {
   const status = loading
     ? "loading"
     : error
-    ? "error"
-    : !searchTerm
-    ? "idle"
-    : articles.length
-    ? "success"
-    : "empty";
+      ? "error"
+      : !searchTerm
+        ? "idle"
+        : articles.length
+          ? "success"
+          : "empty";
 
   useEffect(() => {
     const token = getStoredToken();
@@ -170,11 +171,12 @@ export default function App() {
   return (
     <div className={isHome ? "page" : undefined}>
       <Header
+        saved={isSaved}
         isLoggedIn={isLoggedIn}
         userName={userName}
         onSignIn={handleAuthClick}
-        onSearch={handleSearch}
-        loading={loading}
+        onSearch={isSaved ? undefined : handleSearch}
+        loading={isSaved ? false : loading}
       />
 
       <main className="page__content">
@@ -191,6 +193,7 @@ export default function App() {
                     visible={visible}
                     onShowMore={onShowMore}
                     errorMsg={error}
+                    searchTerm={searchTerm}
                   />
                 </div>
                 <About />
@@ -199,7 +202,13 @@ export default function App() {
           />
           <Route
             path="/saved-news"
-            element={isLoggedIn ? <SavedNews /> : <Navigate to="/" replace />}
+            element={
+              isLoggedIn ? (
+                <SavedNews userName={userName} />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

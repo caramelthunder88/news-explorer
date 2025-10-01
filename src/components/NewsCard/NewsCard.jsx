@@ -51,10 +51,10 @@ export default function NewsCard({
     context === "saved"
       ? "Remove from saved"
       : savedState
-      ? "Remove from saved"
-      : isLoggedIn
-      ? "Save article"
-      : "Sign in to save articles";
+        ? "Remove from saved"
+        : isLoggedIn
+          ? "Save article"
+          : "Sign in to save articles";
 
   const handleBtn = (e) => {
     e.preventDefault();
@@ -99,16 +99,21 @@ export default function NewsCard({
             alt={title}
             loading="lazy"
           />
-          {keyword && <span className="card__chip">{keyword}</span>}
+          {context === "saved" && keyword && (
+            <span className="card__chip">{keyword}</span>
+          )}
+
           <button
             type="button"
-            className={
-              "card__btn " +
-              (context === "saved" ? "card__btn--delete" : "card__btn--save") +
-              (savedState && context !== "saved" ? " is-active" : "")
-            }
+            className={[
+              "card__btn",
+              context === "saved" ? "card__btn--delete" : "card__btn--save",
+              savedState && context !== "saved" ? "is-active" : "",
+              !isLoggedIn && context !== "saved" ? "is-locked" : "",
+            ].join(" ")}
             aria-label={btnLabel}
             title={btnLabel}
+            aria-pressed={context !== "saved" ? Boolean(savedState) : undefined}
             onClick={handleBtn}
           />
 

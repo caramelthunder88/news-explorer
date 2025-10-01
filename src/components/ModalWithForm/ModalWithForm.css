@@ -16,7 +16,7 @@
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: #00000080;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -68,7 +68,7 @@
 }
 
 .modal__close:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: #0000000a;
 }
 .modal__close:focus-visible {
   outline: 2px solid #2f71e5;
@@ -88,7 +88,10 @@
   font-size: 16px;
   line-height: 1;
   cursor: pointer;
-  transition: background 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
 }
 
 .modal__submit:not(:disabled):hover {
@@ -129,8 +132,17 @@
   height: 40px;
   border: none;
   border-bottom: 1px solid #000000;
-
   padding: 0;
+}
+
+.modal .modal__input {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid #000;
+  box-shadow: none;
+  outline: none;
+  background: transparent;
 }
 
 .modal__switch {

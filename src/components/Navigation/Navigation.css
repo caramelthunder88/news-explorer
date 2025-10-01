@@ -8,6 +8,7 @@
   align-items: center;
   margin-left: auto;
   margin-right: 42px;
+  color: var(--nav-fg, #fff);
 }
 
 .nav__list {
@@ -23,6 +24,7 @@
 }
 
 .nav__link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -30,23 +32,25 @@
   font-family: "Roboto-500", sans-serif;
   font-size: 18px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: currentColor;
   text-decoration: none;
-
   border: 1px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.nav__link:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+.nav__link:hover,
+.nav__link:focus-visible {
+  background: var(--nav-hover-bg, #ffffff14);
+  border-color: var(--nav-border, #ffffff33);
 }
 
 .nav__link--active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.4);
+  color: currentColor;
+  background: transparent;
+  border-color: transparent;
 }
 
 .nav__link--home {
@@ -56,34 +60,15 @@
   background: transparent;
 }
 
-.nav__link--home:hover,
-.nav__link--home.nav__link--active,
-.nav__link--home:focus-visible {
-  background: transparent;
-  border: none;
-  color: #fff;
-  text-decoration: none;
-}
-
-.nav__link--home {
-  position: relative;
-}
-
-.nav__link--home.nav__link--active::after {
+.nav__link--active::after {
   content: "";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: -20px;
-  width: 68px;
+  width: var(--nav-underline-w, 68px);
   height: 3px;
-  background: #fff;
+  background: currentColor;
   border-radius: 2px;
   pointer-events: none;
-  z-index: 1;
-}
-
-.nav__link--home.nav__link--active {
-  background: transparent;
-  border-color: transparent;
 }

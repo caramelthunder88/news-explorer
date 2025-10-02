@@ -169,7 +169,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className={isHome ? "page" : undefined}>
+    <div
+      className={`page ${isHome ? "page--home" : ""} ${isSaved ? "page--saved" : ""}`}
+    >
       <Header
         saved={isSaved}
         isLoggedIn={isLoggedIn}

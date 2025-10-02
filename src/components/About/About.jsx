@@ -19,21 +19,17 @@ export default function About() {
             About the author
           </h2>
           <p className="about__text">
-            I’m Donte Morgan owner of a moving company with 14 years of
-            steamfitting experience—transitioning into web development. I work
-            with JavaScript, React, React Router, HTML5/CSS, responsive layout,
-            accessibility, Git/GitHub, Vite, and consuming REST APIs. I build
-            clean UIs with React hooks and component-driven architecture.
+            Donte Morgan — from trades to tech. I craft accessible, responsive
+            UIs with React, Router, and Vite. JS/HTML/CSS, Git/GitHub, REST;
+            component-driven code.
           </p>
           <p className="about__text">
-            At TripleTen, I’ve completed hands-on projects like News Explorer,
-            translating Figma specs into responsive layouts, wiring routing and
-            state, integrating external APIs, and implementing form validation
-            and error states. I’ve practiced code reviews, pair programming, and
-            Git branching/PR workflows, with a focus on semantic HTML and
-            accessibility. I enjoy turning real operations into simple web
-            tools—scheduling/quoting, job tracking, and workflow automation
-            delivering reliable, maintainable features.
+            At TripleTen I shipped projects like News Explorer—translating Figma
+            to responsive UIs with routing, state, APIs, and solid form UX.
+            Practiced code reviews, pair programming, and Git branching/PRs;
+            prioritized semantic HTML and accessibility. I like building
+            real-world ops tools—scheduling/quoting, job tracking, and workflow
+            automation that’s reliable and maintainable
           </p>
         </div>
       </div>

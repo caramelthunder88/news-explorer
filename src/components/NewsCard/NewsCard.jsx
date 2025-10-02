@@ -1,27 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./NewsCard.css";
 import { isSaved, toggleSaved } from "../../utils/savedArticlesStub.js";
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-const fmt = (d) =>
-  d
-    ? `${MONTHS[new Date(d).getMonth()]} ${new Date(d).getDate()}, ${new Date(
-        d
-      ).getFullYear()}`
-    : "";
+import { formatArticleDate } from "../../utils/date.js";
 
 export default function NewsCard({
   card = {},
@@ -40,26 +20,32 @@ export default function NewsCard({
     keyword,
   } = card;
 
-  const sourceName = typeof source === "string" ? source : source?.name;
+  const sourceName = typeof source === "string" ? source : (source?.name ?? "");
+
+  const dateText = useMemo(() => formatArticleDate(publishedAt), [publishedAt]);
 
   const [savedState, setSavedState] = useState(false);
+
   useEffect(() => {
     if (url) setSavedState(isSaved(url));
+    else setSavedState(false);
   }, [url]);
 
-  const btnLabel =
-    context === "saved"
+  const isSavedContext = context === "saved";
+
+  const btnLabel = isSavedContext
+    ? "Remove from saved"
+    : savedState
       ? "Remove from saved"
-      : savedState
-        ? "Remove from saved"
-        : isLoggedIn
-          ? "Save article"
-          : "Sign in to save articles";
+      : isLoggedIn
+        ? "Save article"
+        : "Sign in to save articles";
 
   const handleBtn = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
-    if (context === "saved") {
+    if (isSavedContext) {
       toggleSaved(card);
       setSavedState(false);
       onRemove?.(card);
@@ -80,6 +66,10 @@ export default function NewsCard({
     now ? onSave?.(card) : onRemove?.(card);
   };
 
+  const imgSrc =
+    urlToImage ||
+    "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop";
+
   return (
     <article className="card">
       <a
@@ -92,14 +82,12 @@ export default function NewsCard({
         <div className="card__media">
           <img
             className="card__img"
-            src={
-              urlToImage ||
-              "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
-            }
-            alt={title}
+            src={imgSrc}
+            alt={title || "News thumbnail"}
             loading="lazy"
           />
-          {context === "saved" && keyword && (
+
+          {isSavedContext && keyword && (
             <span className="card__chip">{keyword}</span>
           )}
 
@@ -107,27 +95,32 @@ export default function NewsCard({
             type="button"
             className={[
               "card__btn",
-              context === "saved" ? "card__btn--delete" : "card__btn--save",
-              savedState && context !== "saved" ? "is-active" : "",
-              !isLoggedIn && context !== "saved" ? "is-locked" : "",
-            ].join(" ")}
+              isSavedContext ? "card__btn--delete" : "card__btn--save",
+              savedState && !isSavedContext ? "is-active" : "",
+              !isLoggedIn && !isSavedContext ? "is-locked" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             aria-label={btnLabel}
             title={btnLabel}
-            aria-pressed={context !== "saved" ? Boolean(savedState) : undefined}
+            aria-pressed={!isSavedContext ? Boolean(savedState) : undefined}
             onClick={handleBtn}
           />
 
-          {!isLoggedIn && context !== "saved" && (
+          {!isLoggedIn && !isSavedContext && (
             <span className="card__hint">Sign in to save articles</span>
           )}
         </div>
 
         <div className="card__body">
           <time className="card__date" dateTime={publishedAt || ""}>
-            {fmt(publishedAt)}
+            {dateText}
           </time>
+
           <h3 className="card__title">{title}</h3>
-          <p className="card__text">{description}</p>
+
+          {description && <p className="card__text">{description}</p>}
+
           {sourceName && <span className="card__source">{sourceName}</span>}
         </div>
       </a>

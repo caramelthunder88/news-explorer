@@ -23,31 +23,35 @@
   z-index: 1000;
 }
 
+.modal__dialog {
+  position: relative;
+  width: min(430px, 92vw);
+  max-height: calc(100dvh - 48px);
+  padding: 24px 24px 28px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 12px;
+  overflow: visible;
+}
+
 .modal__dialog--signin {
   margin-top: 207px;
 }
+
 .modal__dialog--signup {
   margin-top: 175px;
 }
+
 .modal__dialog--success {
   margin-top: 279px;
 }
 
-.modal__dialog {
-  background: #fff;
-  position: relative;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 24px 24px 28px;
-  width: min(430px, 92vw);
-  max-height: calc(100dvh - 48px);
-  overflow: visible;
-}
 .modal__title {
-  font-family: "Roboto-900", sans-serif;
   margin: 0 0 12px;
+  font-family: "Roboto-900", sans-serif;
   font-size: 24px;
 }
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -60,16 +64,17 @@
   right: -40px;
   width: 40px;
   height: 40px;
+  background: transparent;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
   z-index: 1;
-  background: transparent;
 }
 
 .modal__close:hover {
   background-color: #0000000a;
 }
+
 .modal__close:focus-visible {
   outline: 2px solid #2f71e5;
   outline-offset: 2px;
@@ -80,10 +85,10 @@
   width: 360px;
   height: 64px;
   margin: 39px auto 0;
-  border: none;
-  border-radius: 100px;
   background: #2f71e5;
   color: #fff;
+  border: none;
+  border-radius: 100px;
   font-family: "Roboto-500", sans-serif;
   font-size: 16px;
   line-height: 1;
@@ -94,20 +99,27 @@
     color 0.2s ease;
 }
 
-.modal__submit:not(:disabled):hover {
+.modal__submit:hover {
   background: #1a4fb3;
 }
 
-.modal__submit:disabled,
+.modal__submit:disabled {
+  background: #9ca3af;
+  color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
 .modal__submit[aria-disabled="true"] {
   background: #9ca3af;
   color: #f9fafb;
   cursor: not-allowed;
   opacity: 1;
 }
+
 .modal__error {
-  color: red;
   margin: 12px 0 0;
+  color: red;
   font-size: 14px;
 }
 
@@ -128,43 +140,43 @@
 }
 
 .modal__input {
-  font-family: "inter-400", sans-serif;
   height: 40px;
-  border: none;
-  border-bottom: 1px solid #000000;
   padding: 0;
-}
-
-.modal .modal__input {
+  background: transparent;
   border-top: 0;
   border-right: 0;
   border-left: 0;
   border-bottom: 1px solid #000;
   box-shadow: none;
   outline: none;
-  background: transparent;
+  font-family: "inter-400", sans-serif;
 }
 
 .modal__switch {
   order: 30;
   margin-top: 16px;
   margin-bottom: 0;
-  font-size: 14px;
   text-align: center;
   color: #6b7280;
+  font-size: 14px;
 }
 
 .modal__link {
+  margin-left: 4px;
+  padding: 0;
   background: none;
   border: 0;
-  padding: 0;
-  margin-left: 4px;
   color: #2f71e5;
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
 }
-.modal__link:hover,
+
+.modal__link:hover {
+  text-decoration: underline;
+  outline: none;
+}
+
 .modal__link:focus-visible {
   text-decoration: underline;
   outline: none;

@@ -15,10 +15,10 @@
   src: url("../../vendor/roboto-700.woff") format("woff");
 }
 
+/* ===== Saved Intro ===== */
 .saved__intro {
   background: #ffffff;
   border-bottom: 1px #d1d2d6;
-
   width: 100%;
 }
 
@@ -59,10 +59,6 @@
   font-size: 18px;
 }
 
-.saved .news-list {
-  padding-top: 24px;
-}
-
 .saved__hint {
   width: min(1440px, 100%);
   margin: 24px auto;
@@ -71,14 +67,66 @@
   font-family: "Roboto-400", sans-serif;
 }
 
+/* ===== Saved List Spacing ===== */
 .saved .news-list {
   padding-bottom: 62px;
   padding-top: 62px;
 }
 
+/* ===== ≤1024 ===== */
 @media (max-width: 1024px) {
-  .saved__inner,
+  .saved__inner {
+    padding: 24px;
+  }
   .saved__hint {
     padding: 24px;
+  }
+}
+
+/* ===== Tablet 768–1023.98 ===== */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .page--saved .news-list__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 224px);
+    grid-auto-rows: 420px;
+    column-gap: 8px;
+    row-gap: 8px;
+    max-width: 688px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center;
+  }
+
+  .page--saved .news-list__grid > * {
+    margin: 0;
+  }
+
+  .page--saved .card {
+    width: 224px;
+    height: 420px;
+  }
+
+  .page--saved .card__body {
+    overflow: hidden;
+  }
+
+  .page--saved .card__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .page--saved .card__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .page--saved .news-list__grid:has(.card:nth-child(n + 4)) {
+    margin-bottom: 32px;
   }
 }

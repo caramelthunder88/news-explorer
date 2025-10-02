@@ -3,7 +3,7 @@ import "./Footer.css";
 import GitHubIcon from "../../assets/GitHubIcon.svg";
 import LinkedinIcon from "../../assets/LinkedinIcon.svg";
 
-export default function Footer({ isLoggedIn = false }) {
+export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="footer" role="contentinfo">
@@ -17,13 +17,7 @@ export default function Footer({ isLoggedIn = false }) {
                 Home
               </NavLink>
             </li>
-            {isLoggedIn && (
-              <li>
-                <NavLink to="/saved-news" className="footer__link">
-                  Saved articles
-                </NavLink>
-              </li>
-            )}
+
             <li>
               <a
                 className="footer__link"

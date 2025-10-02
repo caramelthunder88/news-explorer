@@ -1,6 +1,6 @@
 *,
-::before,
-::after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -9,12 +9,18 @@ body,
 #root {
   height: 100%;
 }
+
 body {
   margin: 0;
-  display: block;
   background: #f4f4f5;
   color: #111;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
     sans-serif;
   line-height: 1.5;
 }
@@ -22,14 +28,6 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-}
-main {
-  flex: 1 0 auto;
 }
 
 html,
@@ -46,4 +44,109 @@ html,
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > div {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#root > div > main {
+  padding-bottom: 0;
+  display: flow-root;
+}
+
+.page--home > main {
+  padding-bottom: 0;
+}
+.page--home > main > :last-child {
+  margin-bottom: 0;
+}
+
+.page--saved > main {
+  padding-bottom: 0px;
+}
+
+@media (min-width: 1024px) {
+  #root > .page--home {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* kills the micro-scroll */
+  }
+  #root > .page--home > main {
+    flex: 1 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* desktop only */
+  .page--saved > main {
+    padding-bottom: 62px;
+  }
+}
+
+:root {
+  --container-max: 1232px;
+  --pad-mobile: 20px;
+  --pad-tablet: 24px;
+  --pad-desktop: 104px;
+}
+
+/* containers used across the app */
+.header__inner,
+.footer__inner,
+.news-list__inner,
+.saved__inner,
+.saved__hint,
+.about__inner,
+.container {
+  width: min(var(--container-max), calc(100% - 2 * var(--pad-mobile)));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .header__inner,
+  .footer__inner,
+  .news-list__inner,
+  .saved__inner,
+  .saved__hint,
+  .about__inner,
+  .container {
+    width: min(var(--container-max), calc(100% - 2 * var(--pad-tablet)));
+  }
+}
+@media (min-width: 1024px) {
+  .header__inner,
+  .footer__inner,
+  .news-list__inner,
+  .saved__inner,
+  .saved__hint,
+  .about__inner,
+  .container {
+    width: min(var(--container-max), calc(100% - 2 * var(--pad-desktop)));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .container,
+  .header__inner,
+  .footer__inner,
+  .saved__inner,
+  .saved__hint,
+  .about__inner {
+    width: min(1232px, calc(100% - 48px)); /* 24px + 24px */
+    margin-inline: auto;
+  }
 }

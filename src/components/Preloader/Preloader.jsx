@@ -2,9 +2,14 @@ import "./Preloader.css";
 
 export default function Preloader() {
   return (
-    <div className="preloader" role="status" aria-live="polite">
-      <span className="preloader__spinner" />
-      <span className="visually-hidden">Loading…</span>
-    </div>
+    <section
+      className="preloader"
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <span className="circle-preloader" aria-hidden="true" />
+      <p className="preloader__text">Searching for news...</p>
+    </section>
   );
 }

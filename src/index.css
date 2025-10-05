@@ -12,7 +12,7 @@ body,
 
 body {
   margin: 0;
-  background: #f4f4f5;
+  background: #ffffff;
   color: #111;
   font-family:
     system-ui,
@@ -70,12 +70,49 @@ main {
 .page--home > main {
   padding-bottom: 0;
 }
+
 .page--home > main > :last-child {
   margin-bottom: 0;
 }
 
 .page--saved > main {
-  padding-bottom: 0px;
+  padding-bottom: 0;
+}
+
+:root {
+  --container-max: 1232px;
+  --pad-mobile: 16px;
+  --pad-tablet: 24px;
+  --pad-desktop: 104px;
+}
+
+.page--home.page--no-results {
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  display: grid;
+  grid-template-rows: var(--hero-h, 420px) 1fr auto;
+}
+
+.page--home.page--no-results .header {
+  height: var(--hero-h, 420px);
+  margin-bottom: 0;
+}
+
+.page--home.page--no-results > main {
+  min-height: 0;
+  display: block;
+  overflow: clip;
+}
+
+.page--home.page--no-results .about {
+  padding-top: 24px;
+}
+
+@media (min-width: 1440px) {
+  .page--saved > main {
+    padding-bottom: 62px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -83,70 +120,30 @@ main {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* kills the micro-scroll */
+    overflow-y: auto;
   }
   #root > .page--home > main {
     flex: 1 0 auto;
   }
-}
-
-@media (min-width: 1024px) {
-  /* desktop only */
-  .page--saved > main {
-    padding-bottom: 62px;
+  #root > .page--home.page--no-results {
+    overflow: hidden;
   }
 }
 
-:root {
-  --container-max: 1232px;
-  --pad-mobile: 20px;
-  --pad-tablet: 24px;
-  --pad-desktop: 104px;
-}
-
-/* containers used across the app */
-.header__inner,
-.footer__inner,
-.news-list__inner,
-.saved__inner,
-.saved__hint,
-.about__inner,
-.container {
-  width: min(var(--container-max), calc(100% - 2 * var(--pad-mobile)));
-  margin-inline: auto;
-}
-
-@media (min-width: 768px) {
-  .header__inner,
-  .footer__inner,
-  .news-list__inner,
-  .saved__inner,
-  .saved__hint,
-  .about__inner,
-  .container {
-    width: min(var(--container-max), calc(100% - 2 * var(--pad-tablet)));
+@media (max-width: 1023.98px) {
+  .page--home.page--no-results {
+    grid-template-rows: var(--hero-h, 360px) 1fr auto;
   }
-}
-@media (min-width: 1024px) {
-  .header__inner,
-  .footer__inner,
-  .news-list__inner,
-  .saved__inner,
-  .saved__hint,
-  .about__inner,
-  .container {
-    width: min(var(--container-max), calc(100% - 2 * var(--pad-desktop)));
+  .page--home.page--no-results .header {
+    height: var(--hero-h, 360px);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023.98px) {
-  .container,
-  .header__inner,
-  .footer__inner,
-  .saved__inner,
-  .saved__hint,
-  .about__inner {
-    width: min(1232px, calc(100% - 48px)); /* 24px + 24px */
-    margin-inline: auto;
+@media (max-width: 767.98px) {
+  .page--home.page--no-results {
+    grid-template-rows: var(--hero-h, 320px) 1fr auto;
+  }
+  .page--home.page--no-results .header {
+    height: var(--hero-h, 320px);
   }
 }

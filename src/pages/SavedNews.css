@@ -15,7 +15,6 @@
   src: url("../../vendor/roboto-700.woff") format("woff");
 }
 
-/* ===== Saved Intro ===== */
 .saved__intro {
   background: #ffffff;
   border-bottom: 1px #d1d2d6;
@@ -67,23 +66,15 @@
   font-family: "Roboto-400", sans-serif;
 }
 
-/* ===== Saved List Spacing ===== */
-.saved .news-list {
-  padding-bottom: 62px;
-  padding-top: 62px;
-}
-
-/* ===== ≤1024 ===== */
-@media (max-width: 1024px) {
-  .saved__inner {
-    padding: 24px;
-  }
-  .saved__hint {
-    padding: 24px;
+/* ===== Desktop (>=1024px) ===== */
+@media (min-width: 1024px) {
+  .saved .news-list {
+    padding-bottom: 62px;
+    padding-top: 62px;
   }
 }
 
-/* ===== Tablet 768–1023.98 ===== */
+/* ===== Tablet (768px–1023.98px) ===== */
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .page--saved .news-list__grid {
     display: grid;
@@ -127,6 +118,67 @@
   }
 
   .page--saved .news-list__grid:has(.card:nth-child(n + 4)) {
-    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .saved .news-list {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .page--saved .news-list__grid {
+    margin-block: 0;
+  }
+}
+
+/* Applies to tablet and below (kept intact from your original) */
+@media (max-width: 1024px) {
+  .saved__inner {
+    padding: 24px;
+  }
+  .saved__hint {
+    padding: 24px;
+  }
+}
+
+/* ===== Mobile (<=767.98px) ===== */
+@media (max-width: 767.98px) {
+  .saved__inner {
+    padding: 16px 16px 16px;
+  }
+  .saved__heading {
+    font-size: 28px;
+    line-height: 34px;
+    max-width: 280px;
+    margin: 0;
+  }
+  .saved .news-list {
+    padding-top: 16px;
+    padding-bottom: 40px;
+  }
+  .page--saved .news-list__grid {
+    grid-template-columns: 1fr;
+    width: calc(100% - 32px);
+    max-width: 288px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .page--saved .saved__inner {
+    padding: 8px 16px 16px;
+  }
+
+  .page--saved .saved__eyebrow {
+    margin: 0 0 16px;
+  }
+
+  .page--saved .saved__heading {
+    margin: 0;
+  }
+
+  .page--saved .saved__meta {
+    margin: 50px 0 0;
   }
 }

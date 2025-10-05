@@ -22,15 +22,17 @@ export default function NewsCardList({
   if (status === "loading") {
     return (
       <section className="news-list" aria-busy="true">
-        {showHeader && (
-          <div className="news-list__header">
-            <h2 className="news-list__title">{title}</h2>
+        <div className="news-list__inner">
+          {showHeader && (
+            <header className="news-list__header">
+              <h2 className="news-list__title">{title}</h2>
+            </header>
+          )}
+          <div className="news-list__grid">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="news-list__skel" />
+            ))}
           </div>
-        )}
-        <div className="news-list__grid">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="news-list__skel" />
-          ))}
         </div>
       </section>
     );
@@ -39,12 +41,14 @@ export default function NewsCardList({
   if (status === "error") {
     return (
       <section className="news-list" role="status">
-        {showHeader && (
-          <div className="news-list__header">
-            <h2 className="news-list__title">Error</h2>
-            <p className="news-list__subtitle">{errorMessage}</p>
-          </div>
-        )}
+        <div className="news-list__inner">
+          {showHeader && (
+            <header className="news-list__header">
+              <h2 className="news-list__title">Error</h2>
+              <p className="news-list__subtitle">{errorMessage}</p>
+            </header>
+          )}
+        </div>
       </section>
     );
   }
@@ -53,37 +57,43 @@ export default function NewsCardList({
 
   return (
     <section className="news-list" aria-label={title}>
-      {showHeader && (
-        <div className="news-list__header">
-          <h2 className="news-list__title">{title}</h2>
-        </div>
-      )}
+      <div className="news-list__inner">
+        {showHeader && (
+          <header className="news-list__header">
+            <h2 className="news-list__title">{title}</h2>
+          </header>
+        )}
 
-      <div className="news-list__grid">
-        {toShow.map((article, i) => {
-          const card =
-            context === "home" && searchTerm
-              ? { ...article, keyword: searchTerm.trim() }
-              : article;
-          return (
-            <NewsCard
-              key={card.url ?? i}
-              card={card}
-              isLoggedIn={isLoggedIn}
-              context={context}
-              onRemove={onRemove}
-            />
-          );
-        })}
+        <div className="news-list__grid" role="list">
+          {toShow.map((article, i) => {
+            const card =
+              context === "home" && searchTerm
+                ? { ...article, keyword: searchTerm.trim() }
+                : article;
+            return (
+              <NewsCard
+                key={card.url ?? i}
+                card={card}
+                isLoggedIn={isLoggedIn}
+                context={context}
+                onRemove={onRemove}
+              />
+            );
+          })}
+        </div>
+
+        {typeof visible === "number" && visible < articles.length && (
+          <div className="news-list__more">
+            <button
+              type="button"
+              className="news-list__btn"
+              onClick={onShowMore}
+            >
+              Show more
+            </button>
+          </div>
+        )}
       </div>
-
-      {typeof visible === "number" && visible < articles.length && (
-        <div className="news-list__more">
-          <button type="button" className="news-list__btn" onClick={onShowMore}>
-            Show more
-          </button>
-        </div>
-      )}
     </section>
   );
 }

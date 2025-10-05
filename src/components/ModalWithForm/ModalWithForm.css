@@ -2,17 +2,16 @@
   font-family: "Roboto-900";
   src: url("../../vendor/roboto-900.woff") format("woff");
 }
-
 @font-face {
   font-family: "inter-400";
   src: url("../../vendor/inter-400-regular.woff") format("woff");
 }
-
 @font-face {
   font-family: "Roboto-500";
   src: url("../../vendor/roboto-500.woff") format("woff");
 }
 
+/* ===== Base ===== */
 .modal {
   position: fixed;
   inset: 0;
@@ -182,11 +181,54 @@
   outline: none;
 }
 
+/* ===== Desktop (≥1024px) ===== */
 @media (min-width: 1024px) {
   .modal__dialog--signin {
     min-height: 380px;
   }
   .modal__dialog--signup {
     min-height: 458px;
+  }
+}
+
+/* ===== Mobile (≤767.98px) ===== */
+@media (max-width: 767.98px) {
+  .modal {
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .modal__dialog {
+    width: 100vw;
+    max-width: none;
+    height: auto;
+    max-height: calc(100dvh - 56px);
+    margin: 0;
+    border-radius: 0;
+    padding: 16px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal__dialog--signin,
+  .modal__dialog--signup,
+  .modal__dialog--success {
+    margin-top: 0;
+  }
+
+  .modal__close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal__submit {
+    width: 100%;
+    height: 56px;
+    margin-top: 24px;
+    border-radius: 1000px;
   }
 }

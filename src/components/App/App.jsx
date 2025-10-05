@@ -168,9 +168,10 @@ export default function App() {
     }
   }, []);
 
+  const noResults = isHome && status !== "success";
   return (
     <div
-      className={`page ${isHome ? "page--home" : ""} ${isSaved ? "page--saved" : ""}`}
+      className={`page ${isHome ? "page--home" : ""} ${isSaved ? "page--saved" : ""} ${noResults ? "page--no-results" : ""}`}
     >
       <Header
         saved={isSaved}

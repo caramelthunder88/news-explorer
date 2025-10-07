@@ -24,12 +24,11 @@ export default function About() {
             component-driven code.
           </p>
           <p className="about__text">
-            At TripleTen I shipped projects like News Explorer—translating Figma
-            to responsive UIs with routing, state, APIs, and solid form UX.
-            Practiced code reviews, pair programming, and Git branching/PRs;
-            prioritized semantic HTML and accessibility. I like building
-            real-world ops tools—scheduling/quoting, job tracking, and workflow
-            automation that’s reliable and maintainable
+            At TripleTen I shipped projects like News Explorer—turning Figma
+            designs into responsive apps with routing, state, APIs, and strong
+            form UX. I practiced reviews/pairing and Git workflows, prioritized
+            accessible semantic HTML, and built reliable ops tools for
+            quoting/scheduling, job tracking, and automation.
           </p>
         </div>
       </div>

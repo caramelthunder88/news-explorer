@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+:root {
+  --container-max: 1232px;
+  --pad-mobile: 16px;
+  --pad-tablet: 24px;
+  --pad-desktop: 104px;
+}
+
 html,
 body,
 #root {
@@ -34,20 +41,26 @@ html,
 body {
   overflow-x: hidden;
 }
-
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
 }
-
 html,
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 html {
   scrollbar-gutter: stable both-edges;
+}
+
+.scroll-invisible {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-invisible::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 #root {
@@ -71,23 +84,13 @@ main {
   display: flow-root;
 }
 
-.page--home > main {
+.page--home > main,
+.page--saved > main {
   padding-bottom: 0;
 }
 
 .page--home > main > :last-child {
   margin-bottom: 0;
-}
-
-.page--saved > main {
-  padding-bottom: 0;
-}
-
-:root {
-  --container-max: 1232px;
-  --pad-mobile: 16px;
-  --pad-tablet: 24px;
-  --pad-desktop: 104px;
 }
 
 @media (min-width: 1440px) {
@@ -96,45 +99,134 @@ main {
   }
 }
 
-@media (min-width: 1024px) {
-  #root > .page--home {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
+#root > :where(.page--home) {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+#root > :where(.page--home) > main {
+  flex: 1 0 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > :where(.page--home).page--no-results {
+  overflow: hidden;
+}
+
+#root > :where(.page--home).page--no-results > main > :where(.about) {
+  flex: 1 0 auto;
+}
+
+#root > :where(.page--home):not(.page--no-results) > main > :where(.about) {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  #root > :where(.page--home).page--no-results :where(.about) {
+  }
+  #root > :where(.page--home).page--no-results :where(.about__inner) {
+    padding: 0;
+  }
+  #root
+    > :where(.page--home).page--no-results
+    :where(.about__photo-wrap, .about__photo-placeholder) {
+    width: 208px;
+    height: 208px;
+  }
+  #root > :where(.page--home).page--no-results :where(.about__title) {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  #root > :where(.page--home).page--no-results > main + :where(.footer) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  #root > :where(.page--home).page--no-results :where(.about__inner) {
+    padding-bottom: 0;
+  }
+  #root > :where(.page--home).page--no-results > main + :where(.footer) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+#root > :where(.page--home).page--no-results {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+#root > :where(.page--home).page--no-results > main {
+  flex: 1 0 auto;
+  min-height: 0;
+}
+
+#root > :where(.page--home).page--no-results > .footer {
+  margin-top: auto;
+  flex: 0 0 auto;
+}
+
+#root > :where(.page--home).page--no-results > main > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1023.98px) {
+  #root > .page--home.page--no-results {
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  #root > .page--home > main {
-    flex: 1 0 auto;
+  #root > .page--home.page--no-results::-webkit-scrollbar {
+    display: none;
   }
+}
+
+@media (max-width: 1023.98px) {
+  #root > .page--home.page--no-results {
+    height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root > .page--home.page--no-results.scroll-invisible {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  #root > .page--home.page--no-results.scroll-invisible::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
   #root > .page--home.page--no-results {
     overflow: hidden;
   }
 }
 
-/*@media (min-width: 768px) {
-  #root > .page--home.page--no-results {
-    display: grid;
-    grid-template-rows: var(--hero) 1fr auto;
-    height: 100dvh;
-  }
-  #root > .page--home.page--no-results .header {
-    height: auto;
-
-    padding-bottom: 88px;
-    margin-bottom: 0;
-  }
-}
-
 @media (max-width: 767.98px) {
   #root > .page--home.page--no-results {
-    display: grid;
-    grid-template-rows: var(--hero) 1fr auto;
-    height: 100dvh;
-  }
-  #root > .page--home.page--no-results .header {
     height: auto;
+    min-height: 100svh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-    padding-bottom: 72px;
-    margin-bottom: 0;
+  #root > .page--home.page--no-results {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  #root > .page--home.page--no-results::-webkit-scrollbar {
+    display: none;
   }
 }

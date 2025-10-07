@@ -1,12 +1,13 @@
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard.jsx";
+import NotFoundIconUrl from "../../assets/not-found-icon.svg?url"; // ← add ?url
 
 export default function NewsCardList({
   articles = [],
   visible,
   onShowMore,
   status = "success",
-  errorMessage = "Sorry, nothing matched your request.",
+  errorMessage = "Sorry, nothing matched your search terms.",
   title = "Search results",
   showHeader = true,
   isLoggedIn = false,
@@ -38,16 +39,63 @@ export default function NewsCardList({
     );
   }
 
+  if (status === "empty") {
+    return (
+      <section
+        className="news-list news-list--empty"
+        role="status"
+        aria-live="polite"
+      >
+        <div className="news-list__inner">
+          <div
+            className="news-list__empty"
+            role="img"
+            aria-label="Nothing found"
+          >
+            <img
+              src={NotFoundIconUrl}
+              alt=""
+              className="news-list__empty-icon"
+              aria-hidden="true"
+            />
+            <h2 className="news-list__title news-list__title--empty">
+              Nothing found
+            </h2>
+            <p className="news-list__subtitle news-list__subtitle--empty">
+              Sorry, nothing matched your search terms.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (status === "error") {
     return (
-      <section className="news-list" role="status">
+      <section
+        className="news-list news-list--empty"
+        role="status"
+        aria-live="polite"
+      >
         <div className="news-list__inner">
-          {showHeader && (
-            <header className="news-list__header">
-              <h2 className="news-list__title">Error</h2>
-              <p className="news-list__subtitle">{errorMessage}</p>
-            </header>
-          )}
+          <div
+            className="news-list__empty"
+            role="img"
+            aria-label="Nothing found"
+          >
+            <img
+              src={NotFoundIconUrl}
+              alt=""
+              className="news-list__empty-icon"
+              aria-hidden="true"
+            />
+            <h2 className="news-list__title news-list__title--empty">
+              Nothing found
+            </h2>
+            <p className="news-list__subtitle news-list__subtitle--empty">
+              {errorMessage}
+            </p>
+          </div>
         </div>
       </section>
     );

@@ -168,10 +168,13 @@ export default function App() {
     }
   }, []);
 
-  const noResults = isHome && status !== "success";
+  const noResults = isHome && status === "idle";
+
   return (
     <div
-      className={`page ${isHome ? "page--home" : ""} ${isSaved ? "page--saved" : ""} ${noResults ? "page--no-results" : ""}`}
+      className={`page scroll-invisible ${isHome ? "page--home" : ""} ${
+        isSaved ? "page--saved" : ""
+      } ${noResults ? "page--no-results" : ""}`}
     >
       <Header
         saved={isSaved}

@@ -18,14 +18,13 @@
 .about {
   background: #fff;
   color: #111;
-  /*min-height: 624px;*/
 }
 
 .about__inner {
   width: 100%;
-  max-width: 1232px;
+  max-width: 100%;
 
-  padding: 80px 104px 80px;
+  padding: 40px 104px 0;
   display: grid;
   grid-template-columns: 464px 600px;
   align-items: start;
@@ -46,7 +45,6 @@
   text-align: center;
   font-family: "Roboto-400", sans-serif;
   font-size: 18px;
-  padding: 0 20px;
 }
 .about__photo {
   width: 100%;
@@ -67,6 +65,7 @@
   font-size: 40px;
   line-height: 46px;
   color: #111;
+  padding-top: 51px;
 }
 .about__text {
   margin: 0 0 12px;
@@ -75,16 +74,13 @@
   color: #1a1b22;
 }
 
-@media (min-width: 1440px) {
-}
-
 @media (min-width: 1024px) and (max-width: 1439.98px) {
   .about {
     height: auto;
   }
   .about__inner {
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 64px 40px 0;
     display: grid;
@@ -122,7 +118,6 @@
   .page--home.page--no-results .about__text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    overflow: hidden;
   }
   .page--home.page--no-results .about__text:first-of-type {
     -webkit-line-clamp: 5;
@@ -142,7 +137,7 @@
     width: 688px;
     min-height: 354px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 0 40px 0;
     box-sizing: content-box;
     display: grid;
     grid-template-columns: 232px 424px;
@@ -163,17 +158,13 @@
     margin: 0 0 16px;
     font-size: 32px;
     line-height: 36px;
+    padding: 0;
   }
   .about__text {
-    margin: 0;
     max-width: 424px;
-    font:
-      400 18px/24px "Roboto-400",
-      sans-serif;
-    color: #1a1b22;
+
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    overflow: hidden;
   }
   .about__text:first-of-type {
     -webkit-line-clamp: 4;
@@ -199,7 +190,7 @@
 @media (max-width: 767.98px) {
   .about {
     height: auto;
-    padding: 32px 16px 0;
+    padding-top: 32px;
     box-sizing: border-box;
   }
   .about__inner {
@@ -219,12 +210,25 @@
   .about__title {
     font-size: 28px;
     line-height: 32px;
-    margin: 24px 0 16px;
+    padding-top: 24px;
   }
   .about__text {
     font-size: 16px;
     line-height: 22px;
     margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .about__text:first-of-type {
+    -webkit-line-clamp: 3;
+  }
+
+  .about__text:nth-of-type(2) {
+    -webkit-line-clamp: 4;
   }
   .about__text,
   .about__paragraph {
@@ -233,5 +237,6 @@
   }
   .about__content {
     margin-top: 0;
+    padding: 0 16px;
   }
 }

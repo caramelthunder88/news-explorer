@@ -34,11 +34,11 @@
   color: #9aa0a6;
 }
 
-.search-form__input:focus {
+/*.search-form__input:focus {
   box-shadow:
     inset 0 0 0 1px #5080ff,
     0 0 0 3px #2f71e540;
-}
+}*/
 
 /* .search-form__input--invalid {
   box-shadow:

@@ -15,7 +15,6 @@
   src: url("../../vendor/roboto-700.woff") format("woff");
 }
 
-/* ========= Base ========= */
 .header {
   --nav-underline-w: 68px;
   position: relative;
@@ -24,7 +23,7 @@
   background: url("../../assets/georgia-de-lotz--UsJoNxLaNo-unsplash@2x.png")
     center/cover no-repeat;
   background-color: #0b1a33;
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 0;
 }
 
@@ -224,14 +223,6 @@
   bottom: 0;
 }
 
-@media (min-width: 1440px) {
-  .header:not(.header--saved) {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .header__container {
     padding-inline: 40px;
@@ -324,7 +315,7 @@
   .header__logo {
     height: 24px;
     line-height: 1;
-    margin: 0 !important;
+    margin: 0;
     order: 0;
   }
 
@@ -332,7 +323,7 @@
     display: inline-flex;
     order: 999;
     margin-left: auto;
-    margin-right: 0 !important;
+    margin-right: 0;
     width: 40px;
     height: 40px;
     padding: 0;
@@ -395,7 +386,7 @@
   .header__search {
     width: calc(100vw - 32px);
     max-width: none;
-    margin: 122px 16px;
+    margin: 122px 16px 0;
     box-sizing: border-box;
   }
 

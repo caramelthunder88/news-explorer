@@ -145,24 +145,35 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
+  /* Keep the container full-width; gutters live on the grid/header/more */
+  .news-list__inner {
+    width: 100%;
+    margin-inline: auto;
+  }
+
   .news-list__grid {
     grid-template-columns: repeat(3, 224px);
     grid-auto-rows: 420px;
     gap: 8px;
-    max-width: 688px;
+    max-width: 688px; /* 3×224 + 2×8 = 688 content width */
     margin-inline: auto;
-    padding-inline: 0;
+    padding-inline: 40px; /* ← exact 40px gutters */
+    box-sizing: content-box; /* padding does NOT shrink the 688 content */
     justify-content: center;
   }
+
   .news-list__header {
     max-width: 688px;
-    width: 100%;
     margin: 0 auto 32px;
-    padding: 0;
+    padding-inline: 40px; /* match grid gutters */
+    box-sizing: content-box;
   }
+
   .news-list__more {
-    margin-top: 32px;
-    margin-bottom: 0;
+    max-width: 688px;
+    margin: 32px auto 0;
+    padding-inline: 40px; /* match grid gutters */
+    box-sizing: content-box;
   }
 }
 

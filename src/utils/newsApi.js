@@ -27,13 +27,12 @@ export async function getNews(query) {
     language: "en",
   });
 
-  if (BASE_URL.includes("newsapi.org")) {
-    if (!API_KEY) throw new Error("Missing VITE_NEWS_API_KEY");
-    params.set("apiKey", API_KEY);
-  }
+  if (!API_KEY) throw new Error("Missing VITE_NEWS_API_KEY");
+  params.set("apiKey", API_KEY);
 
   const url = `${BASE_URL}?${params.toString()}`;
-  const res = await fetch(url);
+
+  const res = await fetch(url, { headers: { "x-api-key": API_KEY } });
 
   if (!res.ok) {
     const text = await res.text().catch(() => "");

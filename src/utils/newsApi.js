@@ -1,8 +1,10 @@
+const FORCE_DIRECT = import.meta.env.VITE_USE_DIRECT_NEWSAPI === "true";
 const PROD = import.meta.env.PROD;
-const BASE_URL = PROD
-  ? "https://nomoreparties.co/news/v2/everything"
-  : "https://newsapi.org/v2/everything";
 
+const BASE_URL =
+  PROD && !FORCE_DIRECT
+    ? "https://nomoreparties.co/news/v2/everything"
+    : "https://newsapi.org/v2/everything";
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 function dateRange7Days() {
@@ -21,21 +23,25 @@ export async function getNews(query) {
     q: query,
     from,
     to,
-    pageSize: "100",
+    pageSize: "20",
     sortBy: "publishedAt",
     language: "en",
   });
 
-  if (!PROD) {
+  if (BASE_URL.includes("newsapi.org")) {
     if (!API_KEY) throw new Error("Missing VITE_NEWS_API_KEY");
     params.set("apiKey", API_KEY);
   }
 
   const url = `${BASE_URL}?${params.toString()}`;
-  console.log("Fetching:", url);
-
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`News request failed: HTTP ${res.status}`);
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    console.error("News API error:", res.status, text);
+    throw new Error(`News request failed: HTTP ${res.status}`);
+  }
+
   const data = await res.json();
   return data.articles ?? [];
 }

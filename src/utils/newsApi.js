@@ -1,10 +1,9 @@
-const FORCE_DIRECT = import.meta.env.VITE_USE_DIRECT_NEWSAPI === "true";
 const PROD = import.meta.env.PROD;
 
-const BASE_URL =
-  PROD && !FORCE_DIRECT
-    ? "https://nomoreparties.co/news/v2/everything"
-    : "https://newsapi.org/v2/everything";
+const BASE_URL = PROD
+  ? "https://nomoreparties.co/news/v2/everything"
+  : "https://newsapi.org/v2/everything";
+
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 function dateRange7Days() {
@@ -23,7 +22,7 @@ export async function getNews(query) {
     q: query,
     from,
     to,
-    pageSize: "20",
+    pageSize: "100",
     sortBy: "publishedAt",
     language: "en",
   });

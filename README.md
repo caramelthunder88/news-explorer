@@ -16,4 +16,5 @@ The app is built with React and Vite, uses React Router for client-side routing,
 
 - [Figma Design] https://www.figma.com/design/3ottwMEhlBt95Dbn8dw1NH/Your-Final-Project?node-id=22618-1974&t=LD5qgl8IPdjZafT9-0
 
-GitHub - https://github.com/caramelthunder88/news-explorer
+- Deployed site: https://caramelthunder88.github.io/news-explorer/
+- Frontend repository: https://github.com/caramelthunder88/news-explorer

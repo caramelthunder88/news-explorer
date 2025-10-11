@@ -4,76 +4,41 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
-}
 body {
   margin: 0;
-  overflow-x: hidden;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 #root {
-  max-width: none;
   margin: 0;
   padding: 0;
   text-align: initial;
 }
 
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.page__content {
+  flex: 1 0 auto;
+}
+
 @media (min-width: 1024px) {
-  html,
-  body {
-    overflow: auto;
-  }
-
-  .page {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-    height: auto;
-    overflow: visible;
-  }
-
-  .header,
-  .page__content,
-  .footer {
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-  }
-
-  .main--home {
+  .page__section--home {
     display: none;
   }
 }
-
 @media (max-width: 1023px) {
-  html,
-  body {
-    overflow: auto;
-  }
-
-  .page {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-    height: auto;
-  }
-
-  .page__content {
-    overflow: visible;
-  }
-  .main--home {
+  .page__section--home {
     display: block;
   }
-}
-
-.logo,
-.card,
-.read-the-docs {
-  all: unset;
 }

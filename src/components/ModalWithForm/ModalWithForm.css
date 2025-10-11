@@ -1,17 +1,20 @@
 @font-face {
   font-family: "Roboto-900";
-  src: url("../../vendor/roboto-900.woff") format("woff");
+  src: url("../../vendor/Fonts/roboto-900.woff") format("woff");
 }
 @font-face {
   font-family: "inter-400";
-  src: url("../../vendor/inter-400-regular.woff") format("woff");
+  src: url("../../vendor/Fonts/inter-400-regular.woff") format("woff");
 }
 @font-face {
   font-family: "Roboto-500";
-  src: url("../../vendor/roboto-500.woff") format("woff");
+  src: url("../../vendor/Fonts/roboto-500.woff") format("woff");
 }
 
-/* ===== Base ===== */
+:root {
+  --focus-color: #2f71e5;
+}
+
 .modal {
   position: fixed;
   inset: 0;
@@ -149,6 +152,16 @@
   box-shadow: none;
   outline: none;
   font-family: "inter-400", sans-serif;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.modal__input:focus,
+.modal__input:focus-visible {
+  border-bottom-color: var(--focus-color);
+  box-shadow: inset 0 -2px 0 0 var(--focus-color);
+  outline: none;
 }
 
 .modal__switch {
@@ -173,15 +186,12 @@
 
 .modal__link:hover {
   text-decoration: underline;
-  outline: none;
 }
 
 .modal__link:focus-visible {
   text-decoration: underline;
-  outline: none;
 }
 
-/* ===== Desktop (≥1024px) ===== */
 @media (min-width: 1024px) {
   .modal__dialog--signin {
     min-height: 380px;
@@ -191,7 +201,6 @@
   }
 }
 
-/* ===== Mobile (≤767.98px) ===== */
 @media (max-width: 767.98px) {
   .modal {
     top: 50px;

@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Roboto-900";
-  src: url("../../vendor/roboto-900.woff") format("woff");
+  src: url("../../vendor/Fonts/roboto-900.woff") format("woff");
 }
 
 @font-face {
   font-family: "inter-400";
-  src: url("../../vendor/inter-400-regular.woff") format("woff");
+  src: url("../../vendor/Fonts/inter-400-regular.woff") format("woff");
 }
 
 .modal__dialog_notice {

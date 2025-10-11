@@ -1,18 +1,18 @@
 @font-face {
   font-family: "Roboto-slab-700";
-  src: url("../../vendor/roboto-slab-700.woff2") format("woff2");
+  src: url("../../vendor/Fonts/roboto-slab-700.woff2") format("woff2");
 }
 @font-face {
   font-family: "Roboto-500";
-  src: url("../../vendor/roboto-500.woff") format("woff");
+  src: url("../../vendor/Fonts/roboto-500.woff") format("woff");
 }
 @font-face {
   font-family: "Roboto-400";
-  src: url("../../vendor/roboto-400-regular.woff") format("woff");
+  src: url("../../vendor/Fonts/roboto-400-regular.woff") format("woff");
 }
 @font-face {
   font-family: "Roboto-700";
-  src: url("../../vendor/roboto-700.woff") format("woff");
+  src: url("../../vendor/Fonts/roboto-700.woff") format("woff");
 }
 
 .header {
@@ -153,6 +153,7 @@
 }
 
 .header--saved {
+  --nav-fg: #1a1b22;
   --nav-underline-w: 178px;
   min-height: 80px;
   background: #fff;
@@ -484,6 +485,7 @@
     width: 100%;
     text-align: left;
     padding: 0;
+    color: white;
   }
 
   .header__sheet .nav__link--active::after {

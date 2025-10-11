@@ -11,12 +11,6 @@
   --pad-desktop: 104px;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 body {
   margin: 0;
   background: #ffffff;
@@ -32,35 +26,18 @@ body {
   line-height: 1.5;
 }
 
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
-}
-
-html,
-body {
-  overflow-x: hidden;
-}
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none;
-}
-html,
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-html {
-  scrollbar-gutter: stable both-edges;
-}
-
-.scroll-invisible {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.scroll-invisible::-webkit-scrollbar {
-  width: 0;
-  height: 0;
 }
 
 #root {
@@ -103,8 +80,6 @@ main {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
 }
 
 #root > :where(.page--home) > main {
@@ -112,10 +87,6 @@ main {
   min-height: 0;
   display: flex;
   flex-direction: column;
-}
-
-#root > :where(.page--home).page--no-results {
-  overflow: hidden;
 }
 
 #root > :where(.page--home).page--no-results > main > :where(.about) {
@@ -181,52 +152,26 @@ main {
   margin-bottom: 0;
 }
 
-@media (max-width: 1023.98px) {
-  #root > .page--home.page--no-results {
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  #root > .page--home.page--no-results::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@media (max-width: 1023.98px) {
-  #root > .page--home.page--no-results {
-    height: 100dvh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #root > .page--home.page--no-results.scroll-invisible {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  #root > .page--home.page--no-results.scroll-invisible::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@media (min-width: 1024px) {
-  #root > .page--home.page--no-results {
-    overflow: hidden;
-  }
-}
-
 @media (max-width: 767.98px) {
   #root > .page--home.page--no-results {
     height: auto;
     min-height: 100svh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
+}
 
-  #root > .page--home.page--no-results {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  #root > .page--home.page--no-results::-webkit-scrollbar {
-    display: none;
+@media (min-width: 1440px) {
+  .header__bar,
+      /* add */
+  
+  .saved__inner,
+  .saved__hint,
+  .news-list__inner,
+  .about__inner,
+  .footer__inner {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-inline: var(--pad-desktop);
+    box-sizing: border-box;
   }
 }

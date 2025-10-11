@@ -141,7 +141,7 @@ export default function App() {
       setIsLoggedIn(true);
       setUserName(data?.name || "Demo User");
       setLoginOpen(false);
-    } catch (e) {
+    } catch {
       setAuthError("Invalid email or password");
     } finally {
       setAuthLoading(false);
@@ -161,7 +161,7 @@ export default function App() {
 
       setRegisterOpen(false);
       setSuccessOpen(true);
-    } catch (e) {
+    } catch {
       setAuthError("Sign up failed. Please try again.");
     } finally {
       setAuthLoading(false);
@@ -191,7 +191,7 @@ export default function App() {
             path="/"
             element={
               <>
-                <div className="main main--home">
+                <section className="page__section page__section--home">
                   <Main
                     isLoggedIn={isLoggedIn}
                     status={status}
@@ -201,7 +201,7 @@ export default function App() {
                     errorMsg={error}
                     searchTerm={searchTerm}
                   />
-                </div>
+                </section>
                 <About />
               </>
             }

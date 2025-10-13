@@ -1,0 +1,177 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --container-max: 1232px;
+  --pad-mobile: 16px;
+  --pad-tablet: 24px;
+  --pad-desktop: 104px;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > div {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#root > div > main {
+  padding-bottom: 0;
+  display: flow-root;
+}
+
+.page--home > main,
+.page--saved > main {
+  padding-bottom: 0;
+}
+
+.page--home > main > :last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 1440px) {
+  .page--saved > main {
+    padding-bottom: 62px;
+  }
+}
+
+#root > :where(.page--home) {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > :where(.page--home) > main {
+  flex: 1 0 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > :where(.page--home).page--no-results > main > :where(.about) {
+  flex: 1 0 auto;
+}
+
+#root > :where(.page--home):not(.page--no-results) > main > :where(.about) {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  #root > :where(.page--home).page--no-results :where(.about) {
+  }
+  #root > :where(.page--home).page--no-results :where(.about__inner) {
+    padding: 0;
+  }
+  #root
+    > :where(.page--home).page--no-results
+    :where(.about__photo-wrap, .about__photo-placeholder) {
+    width: 208px;
+    height: 208px;
+  }
+  #root > :where(.page--home).page--no-results :where(.about__title) {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  #root > :where(.page--home).page--no-results > main + :where(.footer) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  #root > :where(.page--home).page--no-results :where(.about__inner) {
+    padding-bottom: 0;
+  }
+  #root > :where(.page--home).page--no-results > main + :where(.footer) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+#root > :where(.page--home).page--no-results {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+#root > :where(.page--home).page--no-results > main {
+  flex: 1 0 auto;
+  min-height: 0;
+}
+
+#root > :where(.page--home).page--no-results > .footer {
+  margin-top: auto;
+  flex: 0 0 auto;
+}
+
+#root > :where(.page--home).page--no-results > main > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+  #root > .page--home.page--no-results {
+    height: auto;
+    min-height: 100svh;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header__bar,
+      /* add */
+  
+  .saved__inner,
+  .saved__hint,
+  .news-list__inner,
+  .about__inner,
+  .footer__inner {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-inline: var(--pad-desktop);
+    box-sizing: border-box;
+  }
+}

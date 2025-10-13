@@ -1,0 +1,124 @@
+@font-face {
+  font-family: "Roboto-500";
+  src: url("../../vendor/Fonts/roboto-500.woff") format("woff");
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 42px;
+  color: var(--nav-fg, #fff);
+}
+
+.nav__list {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__item {
+  display: flex;
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  font-family: "Roboto-500", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: currentColor;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav__link:hover {
+  background: var(--nav-hover-bg, #ffffff14);
+  border-color: var(--nav-border, #ffffff33);
+}
+
+.nav__link:focus-visible {
+  background: var(--nav-hover-bg, #ffffff14);
+  border-color: var(--nav-border, #ffffff33);
+  outline: none;
+}
+
+.nav__link--active {
+  color: currentColor;
+  background: transparent;
+  border-color: transparent;
+}
+
+.nav__link--active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -17px;
+  transform: translateX(-50%);
+  width: var(--nav-underline-w, 68px);
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.nav__link--home {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+@media (max-width: 767.98px) {
+  .nav {
+    margin-right: 0;
+  }
+
+  .nav__link {
+    font-size: 16px;
+  }
+
+  .nav__link {
+    padding: 6px 10px;
+  }
+
+  .header__auth-btn {
+    width: 108px;
+  }
+
+  .header__auth-btn {
+    height: 40px;
+  }
+
+  .header__auth-btn {
+    font-size: 16px;
+  }
+
+  .nav__link {
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+
+  .header__sheet .nav__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .header__sheet .nav__link {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border-color: #ffffff22;
+  }
+}

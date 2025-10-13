@@ -1,0 +1,243 @@
+@font-face {
+  font-family: "Roboto-900";
+  src: url("../../vendor/Fonts/roboto-900.woff") format("woff");
+}
+@font-face {
+  font-family: "inter-400";
+  src: url("../../vendor/Fonts/inter-400-regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Roboto-500";
+  src: url("../../vendor/Fonts/roboto-500.woff") format("woff");
+}
+
+:root {
+  --focus-color: #2f71e5;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #00000080;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__dialog {
+  position: relative;
+  width: min(430px, 92vw);
+  max-height: calc(100dvh - 48px);
+  padding: 24px 24px 28px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 12px;
+  overflow: visible;
+}
+
+.modal__dialog--signin {
+  margin-top: 207px;
+}
+
+.modal__dialog--signup {
+  margin-top: 175px;
+}
+
+.modal__dialog--success {
+  margin-top: 279px;
+}
+
+.modal__title {
+  margin: 0 0 12px;
+  font-family: "Roboto-900", sans-serif;
+  font-size: 24px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.modal__close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modal__close:hover {
+  background-color: #0000000a;
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid #2f71e5;
+  outline-offset: 2px;
+}
+
+.modal__submit {
+  order: 20;
+  width: 360px;
+  height: 64px;
+  margin: 39px auto 0;
+  background: #2f71e5;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-family: "Roboto-500", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+.modal__submit:hover {
+  background: #1a4fb3;
+}
+
+.modal__submit:disabled {
+  background: #9ca3af;
+  color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.modal__submit[aria-disabled="true"] {
+  background: #9ca3af;
+  color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.modal__error {
+  margin: 12px 0 0;
+  color: red;
+  font-size: 14px;
+}
+
+.modal__field {
+  display: grid;
+  gap: 6px;
+  font-family: "inter-400", sans-serif;
+  font-size: 12px;
+}
+
+.modal__field > span {
+  color: #2f71e5;
+  font-family: "inter-400", sans-serif;
+}
+
+.modal__field + .modal__field {
+  margin-top: 30px;
+}
+
+.modal__input {
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid #000;
+  box-shadow: none;
+  outline: none;
+  font-family: "inter-400", sans-serif;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.modal__input:focus,
+.modal__input:focus-visible {
+  border-bottom-color: var(--focus-color);
+  box-shadow: inset 0 -2px 0 0 var(--focus-color);
+  outline: none;
+}
+
+.modal__switch {
+  order: 30;
+  margin-top: 16px;
+  margin-bottom: 0;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.modal__link {
+  margin-left: 4px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #2f71e5;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.modal__link:hover {
+  text-decoration: underline;
+}
+
+.modal__link:focus-visible {
+  text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+  .modal__dialog--signin {
+    min-height: 380px;
+  }
+  .modal__dialog--signup {
+    min-height: 458px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .modal {
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .modal__dialog {
+    width: 100vw;
+    max-width: none;
+    height: auto;
+    max-height: calc(100dvh - 56px);
+    margin: 0;
+    border-radius: 0;
+    padding: 16px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal__dialog--signin,
+  .modal__dialog--signup,
+  .modal__dialog--success {
+    margin-top: 0;
+  }
+
+  .modal__close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal__submit {
+    width: 100%;
+    height: 56px;
+    margin-top: 24px;
+    border-radius: 1000px;
+  }
+}

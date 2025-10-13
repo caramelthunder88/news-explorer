@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Roboto-900";
+  src: url("../../vendor/Fonts/roboto-900.woff") format("woff");
+}
+
+@font-face {
+  font-family: "inter-400";
+  src: url("../../vendor/Fonts/inter-400-regular.woff") format("woff");
+}
+
+.modal__dialog_notice {
+  width: min(430px, 92vw);
+  min-height: 182px;
+
+  border-radius: 16px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal__title_sm {
+  font-family: "Roboto-900", sans-serif;
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.modal__link_action {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #2f71e5;
+  font-family: "inter-400", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.modal__link_action:hover,
+.modal__link_action:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
